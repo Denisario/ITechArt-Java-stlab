@@ -3,8 +3,10 @@ package by.shestopalov.project.classes;
 
 import by.shestopalov.project.Exceptions.EngineVolumeException;
 import by.shestopalov.project.enums.FUELTYPE;
+import org.apache.log4j.Logger;
 
 public class Car {
+    private static final Logger log = Logger.getLogger(Car.class);
     public String mark;
     public String model;
     public int year;
@@ -17,6 +19,7 @@ public class Car {
         this.year = year;
         this.fuelType = fuelType;
         this.engineVolume = engineVolume;
+        log.info("Car has been created");
     }
 
     public Car() {

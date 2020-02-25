@@ -1,13 +1,13 @@
 package by.shestopalov.project.classes;
 
 import by.shestopalov.project.enums.STATE;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Order {
-
-
+    private static final Logger log = Logger.getLogger(Order.class);
     public static int orderId;
     public ArrayList<Part> parts=new ArrayList<>();
     public int partsCount;
@@ -17,28 +17,31 @@ public class Order {
     public STATE state;
 
     public Order(Date creationDate) {
+        log.info("Order has been created");
         orderId++;
         this.creationDate = creationDate;
         this.state = STATE.ACCEPTED;
-
     }
 
     public Order() {
     }
 
     public void addPart(Part part){
+        log.info("Part added in order");
         this.parts.add(part);
         this.total++;
         this.partsCount+=part.price;
     }
 
     public void removePart(Part part){
+        log.info("Part removed in order");
         this.parts.remove(part);
         this.total--;
         this.partsCount-=part.price;
     }
 
     public void changeState(STATE state){
+        log.info("Order state has been changed");
         this.setState(state);
     }
 

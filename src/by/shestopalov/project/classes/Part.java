@@ -1,9 +1,12 @@
 package by.shestopalov.project.classes;
 import by.shestopalov.project.Exceptions.PriceException;
+import by.shestopalov.project.user.AbstractUser;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 
 public class Part {
+   private static final Logger log = Logger.getLogger(AbstractUser.class);
    public int partId;
    public Car car;
    public String category;
@@ -12,6 +15,7 @@ public class Part {
    public ArrayList<String> photos;
 
    public Part(int partId, Car car, String category, int price, String color) {
+      log.info("Part has been created");
       this.partId = partId;
       this.car = car;
       this.category = category;
@@ -81,5 +85,18 @@ public class Part {
               ", color='" + color + '\'' +
               ", photos=" + photos +
               "}\n";
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      Part part = (Part) o;
+      return getPartId() == part.getPartId() &&
+              getPrice() == part.getPrice() &&
+              getCar().equals(part.getCar()) &&
+              getCategory().equals(part.getCategory()) &&
+              getColor().equals(part.getColor()) &&
+              getPhotos().equals(part.getPhotos());
    }
 }

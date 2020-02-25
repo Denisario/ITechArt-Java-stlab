@@ -6,6 +6,8 @@ import by.shestopalov.project.classes.Part;
 import by.shestopalov.project.enums.FUELTYPE;
 import by.shestopalov.project.enums.STATE;
 import by.shestopalov.project.user.User;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 
 import java.io.FileWriter;
 import java.util.Calendar;
@@ -13,9 +15,11 @@ import java.util.GregorianCalendar;
 
 
 public class Main {
-    public static void main(String[] args) {
+    private static final Logger log = Logger.getLogger(Main.class);
 
+    public static void main(String[] args) {
         try{
+            BasicConfigurator.configure();
             User Denis=new User("Denis", "12345");
             Calendar calendar=new GregorianCalendar(2001, Calendar.APRIL, 5);
             Order order=new Order(calendar.getTime());
@@ -30,14 +34,11 @@ public class Main {
             FileWriter writer = new FileWriter("data.txt", false);
             writer.write(Denis.toString());
             writer.flush();
-
-            System.out.println(Denis.findById(1));
-//            System.out.println(Denis);
-
-//            System.out.println(Denis);
+            log.info("Data writted in file");
+            log.info(Denis);
         }
         catch (Exception ex){
-            System.out.println(ex.getMessage());
+            log.error("Exception: "+ex.getMessage());
         }
     }
 }
