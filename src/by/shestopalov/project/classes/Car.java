@@ -2,18 +2,19 @@ package by.shestopalov.project.classes;
 
 
 import by.shestopalov.project.Exceptions.EngineVolumeException;
-import by.shestopalov.project.enums.FUELTYPE;
 import org.apache.log4j.Logger;
 
 public class Car {
     private static final Logger log = Logger.getLogger(Car.class);
-    public String mark;
-    public String model;
-    public int year;
-    public FUELTYPE fuelType;
-    public int engineVolume;
+    private long carId;
+    private String mark;
+    private String model;
+    private int year;
+    private String fuelType;
+    private int engineVolume;
+    private String carcass;
 
-    public Car(String mark, String model, int year, FUELTYPE fuelType, int engineVolume) {
+    public Car(String mark, String model, int year, String fuelType, int engineVolume) {
         this.mark = mark;
         this.model = model;
         this.year = year;
@@ -49,11 +50,11 @@ public class Car {
         this.year = year;
     }
 
-    public FUELTYPE getFuelType() {
+    public String getFuelType() {
         return fuelType;
     }
 
-    public void setFuelType(FUELTYPE fuelType) {
+    public void setFuelType(String fuelType) {
         this.fuelType = fuelType;
     }
 
@@ -75,5 +76,21 @@ public class Car {
                 ", fuelType=" + fuelType +
                 ", engineVolume=" + engineVolume +
                 '}';
+    }
+
+    public long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(long carId) {
+        this.carId = carId;
+    }
+
+    public String getCarcass() {
+        return carcass;
+    }
+
+    public void setCarcass(String carcass) {
+        this.carcass = carcass;
     }
 }

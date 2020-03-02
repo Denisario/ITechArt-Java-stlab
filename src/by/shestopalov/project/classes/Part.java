@@ -6,40 +6,26 @@ import org.apache.log4j.Logger;
 import java.util.ArrayList;
 
 public class Part {
+   public static long total=0;
    private static final Logger log = Logger.getLogger(AbstractUser.class);
-   public int partId;
-   public Car car;
-   public String category;
-   public int price;
-   public String color;
-   public ArrayList<String> photos;
-
-   public Part(int partId, Car car, String category, int price, String color) {
-      log.info("Part has been created");
-      this.partId = partId;
-      this.car = car;
-      this.category = category;
-      this.price = price;
-      this.color = color;
-   }
+   private long partId;
+   private long carId;
+   private String category;
+   private int price;
+   private String color;
+   private String detail;
+   private ArrayList<String> photos;
+   private long totalPart;
 
    public Part() {
    }
 
-   public int getPartId() {
+   public long getPartId() {
       return partId;
    }
 
-   public void setPartId(int partId) {
+   public void setPartId(long partId) {
       this.partId = partId;
-   }
-
-   public Car getCar() {
-      return car;
-   }
-
-   public void setCar(Car car) {
-      this.car = car;
    }
 
    public String getCategory() {
@@ -79,7 +65,7 @@ public class Part {
    public String toString() {
       return "\n\t\tPart{" +
               "partId=" + partId +
-              ", car=" + car +
+              ", carId=" + carId +
               ", category='" + category + '\'' +
               ", price=" + price +
               ", color='" + color + '\'' +
@@ -94,9 +80,33 @@ public class Part {
       Part part = (Part) o;
       return getPartId() == part.getPartId() &&
               getPrice() == part.getPrice() &&
-              getCar().equals(part.getCar()) &&
+              getCarId() == (part.getCarId()) &&
               getCategory().equals(part.getCategory()) &&
               getColor().equals(part.getColor()) &&
               getPhotos().equals(part.getPhotos());
+   }
+
+   public long getCarId() {
+      return carId;
+   }
+
+   public void setCarId(long carId) {
+      this.carId = carId;
+   }
+
+   public String getDetail() {
+      return detail;
+   }
+
+   public void setDetail(String detail) {
+      this.detail = detail;
+   }
+
+   public long getTotalPart() {
+      return totalPart;
+   }
+
+   public void setTotalPart(long totalPart) {
+      this.totalPart = totalPart;
    }
 }

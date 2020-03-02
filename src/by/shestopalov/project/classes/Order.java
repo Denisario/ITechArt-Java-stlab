@@ -3,41 +3,45 @@ package by.shestopalov.project.classes;
 import by.shestopalov.project.enums.STATE;
 import org.apache.log4j.Logger;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Order {
     private static final Logger log = Logger.getLogger(Order.class);
-    public static int orderId;
-    public ArrayList<Part> parts=new ArrayList<>();
-    public int partsCount;
-    public int total;
-    public Date creationDate;
-    public Date complectionDate;
-    public STATE state;
+    private int userId;
+    private int orderId;
+    private ArrayList<Part> parts=new ArrayList<>();
+    private int total;
+    private Timestamp creationDate;
+    private Timestamp complectionDate;
+    private Timestamp possibleComplectionDate;
+    private STATE state;
+    private int partsCount;
 
-    public Order(Date creationDate) {
-        log.info("Order has been created");
+    public Order(Timestamp creationDate, Timestamp complectionDate) {
         orderId++;
-        this.creationDate = creationDate;
-        this.state = STATE.ACCEPTED;
+        this.creationDate=new Timestamp(System.currentTimeMillis());
+        this.possibleComplectionDate = creationDate;
+        this.complectionDate = complectionDate;
+        this.state=STATE.ACCEPTED;
     }
 
     public Order() {
     }
 
+
     public void addPart(Part part){
         log.info("Part added in order");
         this.parts.add(part);
         this.total++;
-        this.partsCount+=part.price;
+        this.partsCount+=part.getPrice();
     }
 
     public void removePart(Part part){
         log.info("Part removed in order");
         this.parts.remove(part);
         this.total--;
-        this.partsCount-=part.price;
+        this.partsCount-=part.getPrice();
     }
 
     public void changeState(STATE state){
@@ -61,36 +65,12 @@ public class Order {
         this.parts = parts;
     }
 
-    public int getPartsCount() {
-        return partsCount;
-    }
-
-    public void setPartsCount(int partsCount) {
-        this.partsCount = partsCount;
-    }
-
     public int getTotal() {
         return total;
     }
 
     public void setTotal(int total) {
         this.total = total;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Date getComplectionDate() {
-        return complectionDate;
-    }
-
-    public void setComplectionDate(Date complectionDate) {
-        this.complectionDate = complectionDate;
     }
 
     public STATE getState() {
@@ -109,13 +89,51 @@ public class Order {
         }
         return "\n\tOrder{" +
                 "orderId=" + orderId +
-
-                ", partsCount=" + partsCount +
                 ", total=" + total +
                 ", creationDate=" + creationDate +
                 ", complectionDate=" + complectionDate +
                 ", state=" + state +
                 ",\n\t parts=" + tmp +
                 "}\n";
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Timestamp getComplectionDate() {
+        return complectionDate;
+    }
+
+    public void setComplectionDate(Timestamp complectionDate) {
+        this.complectionDate = complectionDate;
+    }
+
+    public Timestamp getPossibleComplectionDate() {
+        return possibleComplectionDate;
+    }
+
+    public void setPossibleComplectionDate(Timestamp possibleComplectionDate) {
+        this.possibleComplectionDate = possibleComplectionDate;
+    }
+
+    public int getPartsCount() {
+        return partsCount;
+    }
+
+    public void setPartsCount(int partsCount) {
+        this.partsCount = partsCount;
     }
 }

@@ -4,8 +4,8 @@ import org.apache.log4j.Logger;
 
 public class User extends AbstractUser {
     private static final Logger log = Logger.getLogger(AbstractUser.class);
-    public User(String login, String password) {
-        super(login, password);
+    public User(String firstName, String lastName, String phone) {
+        super(firstName, lastName, phone);
     }
 
 
