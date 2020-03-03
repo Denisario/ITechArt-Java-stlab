@@ -7,4 +7,5 @@ public interface IUser {
     void createOrder(Order order);
     void removeOrder(int index);
     Order findById(int index) throws FindException;
+    void addOrder(Order order);
 }

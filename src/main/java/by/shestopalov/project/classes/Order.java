@@ -1,11 +1,15 @@
 package by.shestopalov.project.classes;
 
 import by.shestopalov.project.enums.STATE;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.log4j.Logger;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+@Getter
+@Setter
 public class Order {
     private static final Logger log = Logger.getLogger(Order.class);
     private int userId;
@@ -49,38 +53,6 @@ public class Order {
         this.setState(state);
     }
 
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public ArrayList<Part> getParts() {
-        return parts;
-    }
-
-    public void setParts(ArrayList<Part> parts) {
-        this.parts = parts;
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
-    public STATE getState() {
-        return state;
-    }
-
-    public void setState(STATE state) {
-        this.state = state;
-    }
-
     @Override
     public String toString() {
         String tmp=new String();
@@ -95,45 +67,5 @@ public class Order {
                 ", state=" + state +
                 ",\n\t parts=" + tmp +
                 "}\n";
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public Timestamp getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Timestamp creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Timestamp getComplectionDate() {
-        return complectionDate;
-    }
-
-    public void setComplectionDate(Timestamp complectionDate) {
-        this.complectionDate = complectionDate;
-    }
-
-    public Timestamp getPossibleComplectionDate() {
-        return possibleComplectionDate;
-    }
-
-    public void setPossibleComplectionDate(Timestamp possibleComplectionDate) {
-        this.possibleComplectionDate = possibleComplectionDate;
-    }
-
-    public int getPartsCount() {
-        return partsCount;
-    }
-
-    public void setPartsCount(int partsCount) {
-        this.partsCount = partsCount;
     }
 }

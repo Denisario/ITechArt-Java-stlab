@@ -2,10 +2,14 @@ package by.shestopalov.project.user;
 
 import by.shestopalov.project.Exceptions.FindException;
 import by.shestopalov.project.classes.Order;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 
+@Getter
+@Setter
 public class AbstractUser implements IUser {
     private static final Logger log = Logger.getLogger(AbstractUser.class);
     public static int totalId;
@@ -50,31 +54,11 @@ public class AbstractUser implements IUser {
         return null;
     }
 
-
-
-    public String getFirstName() {
-        return firstName;
+    @Override
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     @Override
     public String toString() {
@@ -85,13 +69,5 @@ public class AbstractUser implements IUser {
                 ", phone='" + phone + '\'' +
                 ", orders=" + orders +
                 '}';
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }
