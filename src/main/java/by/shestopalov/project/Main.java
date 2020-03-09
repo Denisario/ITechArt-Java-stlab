@@ -4,6 +4,7 @@ import by.shestopalov.project.classes.Car;
 import by.shestopalov.project.classes.Order;
 import by.shestopalov.project.classes.Part;
 import by.shestopalov.project.jdbc.UserController;
+import by.shestopalov.project.json.Serializer;
 import by.shestopalov.project.user.User;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
@@ -30,6 +31,7 @@ public class Main {
             manager.createOrder(Denis, order, 2);
             Denis.addOrder(order);
             System.out.println(Denis);
+            Serializer.serialize(Denis, "json.json");
         }
         catch (Exception ex){
             log.error("Exception: "+ex.getMessage());
