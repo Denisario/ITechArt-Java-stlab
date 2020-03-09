@@ -3,6 +3,7 @@ package by.shestopalov.project;
 import by.shestopalov.project.classes.Car;
 import by.shestopalov.project.classes.Order;
 import by.shestopalov.project.classes.Part;
+import by.shestopalov.project.excel.ExcelApatch;
 import by.shestopalov.project.jdbc.UserController;
 import by.shestopalov.project.json.Serializer;
 import by.shestopalov.project.user.User;
@@ -29,9 +30,10 @@ public class Main {
             order.addPart(part1);
             manager.createOrder(Denis, order, 2);
             Denis.addOrder(order);
-            String jsonUser=Serializer.serialize(Denis, "json.json");
+            String jsonUser=Serializer.serialize(Denis, "genFiles/json.json");
             User tmpUser=Serializer.deserialize(jsonUser);
-            System.out.println(tmpUser);
+
+            ExcelApatch.fillExcelTable(manager.getAllParts());
         }
         catch (Exception ex){
             log.error("Exception: "+ex.getMessage());

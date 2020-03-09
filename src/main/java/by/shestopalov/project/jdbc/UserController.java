@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class UserController {
     private static final Logger log = Logger.getLogger(UserController.class);
@@ -122,5 +123,25 @@ public class UserController {
 
         }
         log.info("User created the order");
+    }
+
+
+    public ArrayList<Part> getAllParts() throws SQLException, PriceException {
+        ArrayList<Part> listPart=new ArrayList<>();
+        PreparedStatement ps2 = null;
+        ps2 = connection.prepareStatement(SQLHelper.TAKE_ALL_PARTS);
+        ResultSet rs = ps2.executeQuery();
+        while (rs.next()) {
+            Part part = new Part();
+            part.setPartId(rs.getLong("part_id"));
+            part.setCarId(rs.getLong("car_id"));
+            part.setColor(rs.getString("color"));
+            part.setCategory(rs.getString("category"));
+            part.setDetail(rs.getString("detail"));
+            part.setPrice(rs.getInt("price"));
+            listPart.add(part);
+
+        }
+        return listPart;
     }
 }

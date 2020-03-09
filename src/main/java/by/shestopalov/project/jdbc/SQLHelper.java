@@ -8,4 +8,5 @@ public class SQLHelper {
     public final static String INSERT_INFO_ORDER="INSERT INTO orders (user_id, state, creation_date, completion_date, possible_completion_date) VALUES(?,?,?,?,?)";
     public final static String INSERT_INFO_ORDERED="INSERT INTO ordered (order_id, part_id, amount_part) VALUES(?,?,?)";
     public final static String TAKE_ORDER_ID="SELECT order_id FROM orders ORDER BY order_id DESC LIMIT 1";
+    public final static String TAKE_ALL_PARTS="SELECT * FROM parts INNER JOIN category ON category.category_id=parts.category_id";
 }
