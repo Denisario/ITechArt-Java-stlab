@@ -9,8 +9,7 @@ import by.shestopalov.project.user.User;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
-import java.sql.Timestamp;
-
+import java.sql.Date;
 
 public class Main {
     private static final Logger log = Logger.getLogger(Main.class);
@@ -26,12 +25,13 @@ public class Main {
             manager.writePartsByCar(car.getCarId());
             Part part1=manager.takePart(2);
             System.out.println(part1);
-            Order order=new Order(new Timestamp(65755466875436L), new Timestamp(4324245634256L));
+            Order order=new Order(new Date(65755466875436L), new Date(4324245634256L));
             order.addPart(part1);
             manager.createOrder(Denis, order, 2);
             Denis.addOrder(order);
-            System.out.println(Denis);
-            Serializer.serialize(Denis, "json.json");
+            String jsonUser=Serializer.serialize(Denis, "json.json");
+            User tmpUser=Serializer.deserialize(jsonUser);
+            System.out.println(tmpUser);
         }
         catch (Exception ex){
             log.error("Exception: "+ex.getMessage());

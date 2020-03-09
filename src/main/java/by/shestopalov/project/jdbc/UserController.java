@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 public class UserController {
     private static final Logger log = Logger.getLogger(UserController.class);
@@ -101,12 +102,13 @@ public class UserController {
 
     public void createOrder(AbstractUser user, Order order, long total) throws SQLException {
         PreparedStatement ps1 = null;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
         ps1 = connection.prepareStatement(SQLHelper.INSERT_INFO_ORDER);
         ps1.setString(1, String.valueOf(user.getId()));
         ps1.setString(2, String.valueOf(order.getState()));
-        ps1.setTimestamp(3, order.getCreationDate());
-        ps1.setTimestamp(4, order.getComplectionDate());
-        ps1.setTimestamp(5, order.getPossibleComplectionDate());
+        ps1.setString(3, formatter.format(order.getCreationDate()));
+        ps1.setString(4, formatter.format(order.getComplectionDate()));
+        ps1.setString(5, formatter.format(order.getPossibleComplectionDate()));
         int row=ps1.executeUpdate();
         ps1=connection.prepareStatement(SQLHelper.TAKE_ORDER_ID);
         ResultSet rs=ps1.executeQuery();

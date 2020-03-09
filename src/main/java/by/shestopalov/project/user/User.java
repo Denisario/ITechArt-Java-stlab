@@ -8,7 +8,9 @@ public class User extends AbstractUser {
         super(firstName, lastName, phone);
     }
 
-
+    public User(){
+        super();
+    }
     @Override
     public String toString() {
         log.info("User saw the info");

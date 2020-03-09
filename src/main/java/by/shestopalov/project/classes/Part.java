@@ -2,6 +2,7 @@ package by.shestopalov.project.classes;
 import by.shestopalov.project.Exceptions.PriceException;
 import by.shestopalov.project.user.AbstractUser;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.log4j.Logger;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class Part {
    public static long total=0;
    private static final Logger log = Logger.getLogger(AbstractUser.class);

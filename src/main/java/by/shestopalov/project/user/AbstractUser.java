@@ -3,6 +3,7 @@ package by.shestopalov.project.user;
 import by.shestopalov.project.Exceptions.FindException;
 import by.shestopalov.project.classes.Order;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.log4j.Logger;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class AbstractUser implements IUser {
     private static final Logger log = Logger.getLogger(AbstractUser.class);
     public static int totalId;
